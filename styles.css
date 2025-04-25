@@ -1,0 +1,265 @@
+/* Base Styles - Default Theme (Blue/Grey) */
+:root {
+    --primary-color: #0a9396; --secondary-color: #005f73; --accent-color: #94d2bd;
+    --light-bg: #f8f9fa; --medium-bg: #e9ecef; --dark-text: #001219;
+    --medium-text: #343a40; --light-text: #6c757d; --border-color: #dee2e6;
+    --white-color: #fff; --success-color: #2a9d8f; --danger-color: #ae2012;
+    --info-color: #0a9396; --warning-color: #ee9b00;
+    --category-worship: #0077b6; --category-praise: #2a9d8f;
+    --category-interlude: #6a4c93; --category-other: #6c757d;
+    --hover-brightness: 85%;
+    --focus-shadow-color: color-mix(in srgb, var(--primary-color) 20%, transparent);
+    --container-bg: var(--white-color);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6; margin: 0; padding: 10px;
+    background-color: var(--light-bg); color: var(--dark-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
+}
+.container {
+     max-width: 900px; margin: 20px auto; background-color: var(--container-bg);
+     padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+     box-sizing: border-box; transition: background-color 0.3s ease;
+}
+h1, h2, h3, h4 { color: var(--primary-color); margin-top: 0; margin-bottom: 15px; transition: color 0.3s ease;}
+h1 { text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; font-size: 2em; font-weight: 600; margin-bottom: 5px; transition: border-color 0.3s ease; }
+h2 { margin-top: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; font-size: 1.5em; font-weight: 500; color: var(--secondary-color); transition: color 0.3s ease, border-color 0.3s ease;}
+h3 { font-size: 1.3em; margin-bottom: 10px; font-weight: 500; color: var(--secondary-color); transition: color 0.3s ease;}
+h4 { font-size: 1.1em; margin-bottom: 8px; font-weight: 500; color: var(--primary-color); transition: color 0.3s ease;}
+
+/* Buttons */
+.action-button, .lang-button, .palette-color { display: inline-block; padding: 10px 15px; color: var(--white-color); border: none; border-radius: 4px; font-size: 1em; font-weight: 500; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, opacity 0.2s ease; text-align: center; line-height: 1.4; margin: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.action-button, .lang-button { min-width: 100px; }
+.action-button:hover, .lang-button:hover, .palette-color:hover { opacity: 0.9; box-shadow: 0 3px 6px rgba(0,0,0,0.15); }
+.action-button:active, .lang-button:active, .palette-color:active { transform: scale(0.98); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+
+/* Header Controls Layout */
+.header-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 20px; padding-top: 10px; gap: 10px 20px; }
+.header-left, .header-right { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+
+/* Color Palette */
+.color-palette { display: flex; gap: 8px; align-items: center; }
+.color-palette label { font-size: 0.85em; margin-right: 5px; color: var(--medium-text); transition: color 0.3s ease;}
+.palette-color { width: 26px; height: 26px; border-radius: 50%; padding: 0; min-width: auto; border: 2px solid var(--white-color); box-shadow: 0 0 0 1px var(--border-color); }
+.palette-color.active { transform: scale(1.15); box-shadow: 0 0 0 2px var(--primary-color), 0 2px 5px rgba(0,0,0,0.2); z-index: 1; }
+.palette-color:hover { transform: scale(1.1); }
+
+/* Language Buttons */
+.lang-controls { display: flex; gap: 8px; }
+.lang-button { background-color: var(--light-text); padding: 6px 12px; font-size: 0.9em; min-width: 70px; }
+.lang-button.active { background-color: var(--primary-color); font-weight: bold; }
+.lang-button:hover { background-color: var(--medium-text); }
+.lang-button.active:hover { background-color: var(--primary-color); opacity: 1; }
+
+/* Specific Button Colors */
+#songForm button[type="submit"] { background-color: var(--secondary-color); } #songForm button[type="submit"]:hover { background-color: color-mix(in srgb, var(--secondary-color) var(--hover-brightness), black); }
+#previewListBtn { background-color: var(--info-color); } #previewListBtn:hover { background-color: color-mix(in srgb, var(--info-color) var(--hover-brightness), black); }
+#clearAllDataBtn { background-color: var(--danger-color); } #clearAllDataBtn:hover { background-color: color-mix(in srgb, var(--danger-color) var(--hover-brightness), black); }
+#clearViewBtn { background-color: var(--warning-color); color: var(--dark-text); } #clearViewBtn:hover { background-color: color-mix(in srgb, var(--warning-color) var(--hover-brightness), black); }
+#loadAllBtn { background-color: var(--success-color); } #loadAllBtn:hover { background-color: color-mix(in srgb, var(--success-color) var(--hover-brightness), black); }
+#leaderManagementForm button[type="submit"] { background-color: var(--success-color); }
+#exportDataBtn { background-color: var(--medium-text); } #exportPdfBtn { background-color: var(--secondary-color); }
+#toggleAboutBtn { background-color: var(--info-color); }
+#exportDataBtn:hover { background-color: color-mix(in srgb, var(--medium-text) var(--hover-brightness), black); }
+#exportPdfBtn:hover { background-color: color-mix(in srgb, var(--secondary-color) var(--hover-brightness), black); }
+#toggleAboutBtn:hover { background-color: color-mix(in srgb, var(--info-color) var(--hover-brightness), black); }
+#leaderList button { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; line-height: 1; vertical-align: middle; border-radius: 3px; margin-left: 5px; transition: background-color 0.2s ease, color 0.2s ease;}
+#leaderList button:hover { background-color: var(--medium-bg); }
+#leaderList .delete-leader-btn { color: var(--danger-color); } #leaderList .delete-leader-btn:hover { color: color-mix(in srgb, var(--danger-color) 70%, black); background-color: color-mix(in srgb, var(--danger-color) 10%, transparent); }
+#closePreviewBtn { background-color: var(--light-text); margin-top: 15px; } #closePreviewBtn:hover { background-color: var(--medium-text); }
+
+
+/* Summary Stats */
+.summary-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; background-color: var(--secondary-color); color: var(--white-color); padding: 15px; border-radius: 6px; margin-bottom: 25px; transition: background-color 0.3s ease; }
+.stat-item { background-color: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 4px; text-align: center; transition: background-color 0.2s ease; }
+.stat-item:hover { background-color: rgba(255,255,255,0.2); }
+.stat-item .label { display: block; font-size: 0.85em; opacity: 0.9; margin-bottom: 3px; }
+.stat-item .value { display: block; font-size: 1.3em; font-weight: 600; }
+
+/* Forms */
+.data-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px 20px; }
+.data-form label { display: block; margin-bottom: 4px; font-weight: 500; color: var(--medium-text); font-size: 0.9em; }
+.data-form input[type="date"], .data-form input[type="text"], .data-form select { width: 100%; padding: 8px 10px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 1em; box-sizing: border-box; background-color: var(--white-color); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.data-form input:focus, .data-form select:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 3px var(--focus-shadow-color); }
+.song-form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.song-form-actions .action-button { flex-grow: 1; width: auto; max-width: 200px;}
+
+/* Leader Management Form Specific */
+#leaderManagementForm { display: flex; flex-wrap:wrap; gap: 10px; align-items: flex-end; margin-top: 15px;}
+#leaderManagementForm .form-group { flex-grow: 1; min-width: 120px; }
+#leaderManagementForm .form-group.icon-group { flex-grow: 0; flex-basis: 80px; }
+#leaderManagementForm label { font-size: 0.8em; line-height: 1.2; }
+#leaderManagementForm input[type="text"] { padding: 8px 10px; height: 38px; }
+#leaderManagementForm select#leaderIconSelect { padding: 8px 4px; font-size: 1.1em; height: 38px; }
+#leaderManagementForm button[type="submit"] { width: auto; margin-top: 0; flex-shrink: 0; align-self: flex-end; height: 38px; }
+
+/* Leader List & Dropdown Icon Display */
+.leader-icon { margin-right: 4px; font-size: 1em; display: inline-block; width: auto; text-align: center; vertical-align: middle; }
+#leaderList { list-style: none; padding: 0; margin-top: 15px; max-height: 180px; overflow-y: auto; background: var(--medium-bg); padding: 10px 15px; border-radius: 4px; transition: background-color 0.3s ease;}
+#leaderList li { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border-color); font-size: 1em; transition: border-color 0.3s ease;}
+#leaderList .leader-info { flex-grow: 1; display: flex; align-items: center; margin-right: 10px; word-break: break-all; }
+#leaderList .leader-info .leader-name { margin-left: 2px; }
+#leaderList .leader-actions { display: flex; gap: 5px; flex-shrink: 0; }
+/* Edit mode styling removed as edit feature is simplified for stability */
+#leaderList li:last-child { border-bottom: none; }
+
+/* List Controls */
+.list-controls { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; padding: 15px; background-color: var(--medium-bg); border: 1px solid var(--border-color); border-radius: 4px; transition: background-color 0.3s ease, border-color 0.3s ease;}
+.list-controls .control-group { flex: 1 1 200px; }
+.list-controls label { display: block; font-size: 0.9em; font-weight: 500; color: var(--medium-text); margin-bottom: 4px; }
+.list-controls input[type="text"], .list-controls select { width: 100%; padding: 8px 10px; font-size: 0.95em; border: 1px solid var(--border-color); border-radius: 4px; box-sizing: border-box; }
+
+/* Song List Display */
+#songHistory { transition: opacity 0.3s ease; min-height: 50px; }
+.song-list { list-style: none; padding: 0; margin: 0; }
+.song-list-item { background-color: var(--white-color); border: 1px solid var(--border-color); border-left: 5px solid var(--primary-color); border-radius: 4px; padding: 12px 15px; margin-bottom: 10px; transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, border-color 0.3s ease, border-left-color 0.3s ease; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 15px; align-items: flex-start; }
+.song-list-item:hover { background-color: color-mix(in srgb, var(--primary-color) 5%, var(--white-color)); box-shadow: 0 2px 5px rgba(0,0,0,0.05); transform: translateY(-1px);}
+.song-list-item .details { flex-grow: 1; min-width: 60%;}
+.song-list-item .category-display { flex-shrink: 0; margin-left: auto; text-align: right; }
+.song-list-item span { display: block; margin-bottom: 3px; font-size: 0.95em; line-height: 1.4; }
+.song-list-item .song-title { font-weight: 600; font-size: 1.1em; color: var(--dark-text); margin-bottom: 5px; }
+.song-list-item .song-meta { color: var(--medium-text); font-size: 0.9em; display: flex; align-items: center; }
+.song-list-item .song-meta .meta-label { font-weight: 500; margin-right: 5px; }
+.song-list-item .song-meta .meta-value { margin-right: 10px; }
+
+/* Category colors for song items */
+.song-list-item.category-worship { border-left-color: var(--category-worship); }
+.song-list-item.category-praise { border-left-color: var(--category-praise); }
+.song-list-item.category-interlude { border-left-color: var(--category-interlude); }
+.song-list-item.category-other { border-left-color: var(--category-other); }
+
+.category-badge { display: inline-block; padding: 4px 10px; font-size: 0.8em; border-radius: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: white; margin-bottom: 8px; }
+.category-badge.worship { background-color: var(--category-worship); }
+.category-badge.praise { background-color: var(--category-praise); }
+.category-badge.interlude { background-color: var(--category-interlude); }
+.category-badge.other { background-color: var(--category-other); }
+
+/* Song and leader actions */
+.song-actions { display: flex; gap: 5px; margin-top: 10px; }
+.song-action-btn { background: none; border: none; font-size: 0.9em; padding: 3px 8px; cursor: pointer; color: var(--medium-text); border-radius: 3px; transition: background-color 0.2s ease, color 0.2s ease; }
+.song-action-btn:hover { background-color: var(--medium-bg); color: var(--dark-text); }
+.song-action-btn.edit { color: var(--info-color); }
+.song-action-btn.edit:hover { background-color: color-mix(in srgb, var(--info-color) 10%, transparent); color: var(--secondary-color); }
+.song-action-btn.delete { color: var(--danger-color); }
+.song-action-btn.delete:hover { background-color: color-mix(in srgb, var(--danger-color) 10%, transparent); color: color-mix(in srgb, var(--danger-color) 70%, black); }
+
+/* List Preview Modal */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6); z-index: 999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { max-width: 800px; max-height: 90vh; width: 95%; background-color: var(--container-bg); border-radius: 8px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); overflow-y: auto; position: relative; transform: translateY(-20px); transition: transform 0.3s ease, background-color 0.3s ease; }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-close { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; background: none; border: none; font-size: 1.5em; line-height: 1; cursor: pointer; color: var(--medium-text); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease, color 0.2s ease; }
+.modal-close:hover { background-color: var(--medium-bg); color: var(--dark-text); }
+
+/* About Section */
+#aboutSection { background-color: var(--medium-bg); border-radius: 8px; padding: 20px; margin-bottom: 20px; transition: background-color 0.3s ease; display: none; }
+#aboutSection h3 { color: var(--secondary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+#aboutSection p { font-size: 0.95em; line-height: 1.6; color: var(--medium-text); }
+#aboutSection .version { font-size: 0.85em; color: var(--light-text); text-align: right; margin-top: 15px; }
+#aboutSection .about-header { display: flex; align-items: center; margin-bottom: 15px; }
+#aboutSection .app-logo { width: 80px; height: 80px; margin-right: 20px; border-radius: 10px; }
+
+/* Leader Management Styling */
+.leader-list { margin: 15px 0 25px; }
+#leaderManagementForm button { margin-top: 10px; }
+.icon-select { font-size: 1.2em; padding: 5px; }
+
+/* No Data States */
+.no-data { padding: 40px 20px; text-align: center; color: var(--light-text); background-color: var(--medium-bg); border-radius: 8px; margin: 20px 0; font-size: 1.1em; border: 2px dashed var(--border-color); transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+.no-data svg { margin-bottom: 15px; width: 60px; height: 60px; opacity: 0.5; }
+
+/* Dark Mode Theme */
+[data-theme="dark"] {
+    --primary-color: #48cae4; --secondary-color: #0096c7; --accent-color: #90e0ef;
+    --light-bg: #121212; --medium-bg: #1e1e1e; --dark-text: #e9ecef;
+    --medium-text: #ced4da; --light-text: #adb5bd; --border-color: #343a40;
+    --white-color: #242424; --container-bg: #1a1a1a;
+    --focus-shadow-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+/* Custom Color Themes */
+[data-theme="purple"] {
+    --primary-color: #7b2cbf; --secondary-color: #5a189a; --accent-color: #c77dff;
+    --category-worship: #9d4edd; --category-praise: #7b2cbf;
+    --category-interlude: #5a189a; --category-other: #3c096c;
+}
+
+[data-theme="green"] {
+    --primary-color: #38b000; --secondary-color: #008000; --accent-color: #70e000;
+    --category-worship: #38b000; --category-praise: #008000;
+    --category-interlude: #007200; --category-other: #006400;
+}
+
+[data-theme="orange"] {
+    --primary-color: #ff9500; --secondary-color: #ff7b00; --accent-color: #ffbf69;
+    --category-worship: #ff9f1c; --category-praise: #ff8800;
+    --category-interlude: #ff7b00; --category-other: #ff5400;
+}
+
+[data-theme="teal"] {
+    --primary-color: #20b2aa; --secondary-color: #008b8b; --accent-color: #40e0d0;
+    --category-worship: #20b2aa; --category-praise: #008b8b;
+    --category-interlude: #006d6d; --category-other: #004f4f;
+}
+
+[data-theme="pink"] {
+    --primary-color: #ff69b4; --secondary-color: #db7093; --accent-color: #ffc0cb;
+    --category-worship: #ff69b4; --category-praise: #db7093;
+    --category-interlude: #c71585; --category-other: #9a1663;
+}
+
+[data-theme="indigo"] {
+    --primary-color: #6610f2; --secondary-color: #5400cc; --accent-color: #7d41f4;
+    --category-worship: #6610f2; --category-praise: #5500d4;
+    --category-interlude: #4600b5; --category-other: #32007e;
+}
+
+[data-theme="red"] {
+    --primary-color: #e63946; --secondary-color: #d00000; --accent-color: #ff6b6b;
+    --category-worship: #e63946; --category-praise: #d00000;
+    --category-interlude: #9d0208; --category-other: #6a040f;
+}
+
+/* Print Styles */
+@media print {
+    body { background-color: white; margin: 0; padding: 0; }
+    .container { box-shadow: none; max-width: 100%; padding: 10px; }
+    .header-controls, .data-form, .list-controls, #aboutSection, .song-actions, .modal-overlay, button { display: none !important; }
+    .summary-stats { break-inside: avoid; page-break-inside: avoid; }
+    .song-list-item { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 10px; }
+    h1 { font-size: 18pt; }
+    h2 { font-size: 16pt; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container { padding: 15px; margin: 10px auto; }
+    .header-controls { flex-direction: column; align-items: stretch; }
+    .header-left, .header-right { justify-content: center; }
+    .summary-stats { grid-template-columns: repeat(2, 1fr); }
+    .data-form { grid-template-columns: 1fr; }
+    .song-list-item { flex-direction: column; }
+    .song-list-item .category-display { align-self: flex-start; margin-left: 0; text-align: left; }
+}
+
+/* Loading state */
+.loading { display: flex; align-items: center; justify-content: center; padding: 20px; }
+.loading-spinner { width: 40px; height: 40px; border: 4px solid rgba(0,0,0,0.1); border-radius: 50%; border-top: 4px solid var(--primary-color); animation: spin 1s linear infinite; }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Modal Specific Styles */
+.confirm-dialog { max-width: 400px; text-align: center; }
+.confirm-dialog p { margin-bottom: 20px; font-size: 1.1em; }
+.confirm-actions { display: flex; justify-content: center; gap: 15px; }
+.confirm-actions .action-button { min-width: 80px; }
+#confirmNoBtn { background-color: var(--light-text); }
+#confirmNoBtn:hover { background-color: var(--medium-text); }
+#confirmYesBtn { background-color: var(--danger-color); } /* Use danger for confirmation by default, can be changed */
+#confirmYesBtn:hover { background-color: color-mix(in srgb, var(--danger-color) var(--hover-brightness), black); }

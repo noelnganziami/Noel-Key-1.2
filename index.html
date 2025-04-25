@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noel_Keys</title>
+    <!-- jsPDF Library (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- App Header -->
+        <h1>Noel_Keys <small style="font-size: 0.5em; font-weight: normal; color: var(--light-text); display: block; margin-top: 5px;">Song Management System</small></h1>
+
+        <div class="header-controls">
+            <div class="header-left">
+                <div class="color-palette">
+                    <label for="themeSelect">Theme:</label>
+                    <select id="themeSelect">
+                        <option value="default">Default Theme</option>
+                        <option value="dark">Dark Theme</option>
+                        <option value="purple">Purple Theme</option>
+                        <option value="green">Green Theme</option>
+                        <option value="orange">Orange Theme</option>
+                        <option value="teal">Teal Theme</option>
+                        <option value="pink">Pink Theme</option>
+                        <option value="indigo">Indigo Theme</option>
+                        <option value="red">Red Theme</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="lang-controls">
+                    <button class="lang-button active" data-lang="en">English</button>
+                    <button class="lang-button" data-lang="fr">Français</button>
+                </div>
+                <button id="toggleAboutBtn" class="action-button">About</button>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="aboutSection">
+            <div class="about-header">
+                <img id="app-logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9Ijc1IiBjeT0iNzUiIHI9IjcwIiBmaWxsPSIjMDA5NmM3IiBzdHJva2U9IiM0OGNhZTQiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPHBhdGggZD0iTTUwLDUwIEwxMDAsMTAwIE01MCw3NSBMMTAwLDc1IE01MCwxMDAgTDEwMCw1MCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0zMCw5MCBDMzAsOTUgMzUsOTggNDMsOTggQzUwLDk4IDU1LDk1IDU1LDkwIEM1NSw3NSAzMCw3NSAzMCw2MCBDMzAsNTUgMzUsNTIgNDMsNTIgQzUwLDUyIDU1LDU1IDU1LDYwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTExNSw5MCBDMTIyLDgyIDEyMCw3MCAxMTAsNjYgQzEwMCw2MiA5MCw2OCA5MCw3OCBDOTAsODUgOTUsOTIgMTA1LDkyIEMxMTIsOTIgMTE1LDg4IDExNSw4NCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz4KPC9zdmc+" alt="Noel_Keys Logo" class="app-logo">
+                <h3 data-i18n="about_app">About This App</h3>
+            </div>
+            <p data-i18n="about_description">
+                Noel_Keys is a simple web application designed to help worship teams track songs, keys, and leaders.
+                All data is stored locally in your browser. No data is sent to any server.
+            </p>
+            <p data-i18n="features">
+                <strong>Features:</strong><br>
+                - Track songs with keys, categories, and leaders<br>
+                - Manage worship leaders with custom icons<br>
+                - Filter and search song history<br>
+                - Export data to PDF<br>
+                - Multiple themes and language options
+            </p>
+            <p class="version">Version 1.0.0</p>
+        </div>
+
+        <!-- Summary Statistics -->
+        <div class="summary-stats">
+            <div class="stat-item">
+                <span class="label" data-i18n="total_songs">Total Songs</span>
+                <span class="value" id="totalSongs">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="label" data-i18n="unique_songs">Unique Songs</span>
+                <span class="value" id="uniqueSongs">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="label" data-i18n="total_leaders">Total Leaders</span>
+                <span class="value" id="totalLeaders">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="label" data-i18n="latest_entry">Latest Entry</span>
+                <span class="value" id="latestEntry">-</span>
+            </div>
+        </div>
+
+        <!-- Leader Management -->
+        <h2 data-i18n="leader_management">Leader Management</h2>
+        <form id="leaderManagementForm" class="data-form">
+            <div class="form-group">
+                <label for="leaderName" data-i18n="leader_name">Leader Name</label>
+                <input type="text" id="leaderName" placeholder="Enter leader name" required>
+            </div>
+            <div class="form-group icon-group">
+                <label for="leaderIconSelect" data-i18n="icon">Icon</label>
+                <select id="leaderIconSelect" class="icon-select">
+                    <option value="👨">👨 Man</option>
+                    <option value="👩">👩 Woman</option>
+                    <option value="🧑">🧑 Person</option>
+                    <option value="👦">👦 Boy</option>
+                    <option value="👧">👧 Girl</option>
+                    <option value="👴">👴 Older Man</option>
+                    <option value="👵">👵 Older Woman</option>
+                    <option value="🎸">🎸 Guitar</option>
+                    <option value="🎹">🎹 Piano</option>
+                    <option value="🎤">🎤 Microphone</option>
+                    <option value="🎵">🎵 Music Note</option>
+                    <option value="🎶">🎶 Music Notes</option>
+                    <option value="🎼">🎼 Musical Score</option>
+                    <option value="🎺">🎺 Trumpet</option>
+                    <option value="🎷">🎷 Saxophone</option>
+                    <option value="🥁">🥁 Drum</option>
+                    <option value="🪕">🪕 Banjo</option>
+                    <option value="🔊">🔊 Speaker</option>
+                    <option value="🙏">🙏 Praying Hands</option>
+                    <option value="✝️">✝️ Cross</option>
+                    <option value="📖">📖 Book</option>
+                </select>
+            </div>
+            <button type="submit" class="action-button" data-i18n="add_leader">Add Leader</button>
+        </form>
+
+        <ul id="leaderList" class="leader-list"></ul>
+
+        <!-- Song Add Form -->
+        <h2 data-i18n="add_song">Add Song</h2>
+        <form id="songForm" class="data-form">
+            <div class="form-group">
+                <label for="songDate" data-i18n="date">Date</label>
+                <input type="date" id="songDate" required>
+            </div>
+            <div class="form-group">
+                <label for="songTitle" data-i18n="song_title">Song Title</label>
+                <input type="text" id="songTitle" placeholder="Enter song title" required>
+            </div>
+            <div class="form-group">
+                <label for="songKey" data-i18n="key">Key</label>
+                <select id="songKey" required>
+                    <option value="">Select Key</option>
+                    <option value="C">C</option>
+                    <option value="C#/Db">C#/Db</option>
+                    <option value="D">D</option>
+                    <option value="D#/Eb">D#/Eb</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="F#/Gb">F#/Gb</option>
+                    <option value="G">G</option>
+                    <option value="G#/Ab">G#/Ab</option>
+                    <option value="A">A</option>
+                    <option value="A#/Bb">A#/Bb</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="songCategory" data-i18n="category">Category</label>
+                <select id="songCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="worship">Worship</option>
+                    <option value="praise">Praise</option>
+                    <option value="interlude">Interlude</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="songLeader" data-i18n="leader">Leader</label>
+                <select id="songLeader">
+                    <option value="">Select Leader</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="songNotes" data-i18n="notes">Notes</label>
+                <input type="text" id="songNotes" placeholder="Optional notes">
+            </div>
+            <div class="song-form-actions">
+                <button type="submit" class="action-button" data-i18n="save_song">Save Song</button>
+                <button type="button" id="previewListBtn" class="action-button" data-i18n="preview_list">Preview List</button>
+                <button type="button" id="clearAllDataBtn" class="action-button" data-i18n="clear_all_data">Clear All Data</button>
+            </div>
+            <input type="hidden" id="songId"> <!-- For edit mode -->
+        </form>
+
+        <!-- Song History -->
+        <h2 data-i18n="song_history">Song History</h2>
+        <div class="list-controls">
+            <div class="control-group">
+                <label for="searchInput" data-i18n="search">Search</label>
+                <input type="text" id="searchInput" placeholder="Search songs...">
+            </div>
+            <div class="control-group">
+                <label for="filterCategory" data-i18n="filter_category">Filter Category</label>
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="worship">Worship</option>
+                    <option value="praise">Praise</option>
+                    <option value="interlude">Interlude</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="filterLeader" data-i18n="filter_leader">Filter Leader</label>
+                <select id="filterLeader">
+                    <option value="">All Leaders</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="sortOption" data-i18n="sort_by">Sort By</label>
+                <select id="sortOption">
+                    <option value="date-desc">Date (Newest First)</option>
+                    <option value="date-asc">Date (Oldest First)</option>
+                    <option value="title-asc">Title (A-Z)</option>
+                    <option value="title-desc">Title (Z-A)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="song-form-actions">
+            <button id="loadAllBtn" class="action-button" data-i18n="load_all">Load All</button>
+            <button id="clearViewBtn" class="action-button" data-i18n="clear_view">Clear View</button>
+            <button id="exportPdfBtn" class="action-button" data-i18n="export_pdf">Export PDF</button>
+        </div>
+
+        <div id="songHistory">
+            <ul class="song-list" id="songList"></ul>
+            <div id="noSongs" class="no-data" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <p data-i18n="no_songs_message">No songs found. Add your first song using the form above.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- List Preview Modal -->
+    <div id="previewModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            <h2 data-i18n="song_list_preview">Song List Preview</h2>
+            <div id="previewContent"></div>
+            <button id="closePreviewBtn" class="action-button" data-i18n="close">Close</button>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Dialog -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-content confirm-dialog">
+            <p id="confirmMessage"></p>
+            <div class="confirm-actions">
+                <button id="confirmYesBtn" class="action-button">OK</button>
+                <button id="confirmNoBtn" class="action-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
